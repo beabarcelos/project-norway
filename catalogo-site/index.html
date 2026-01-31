@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Store</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">N</div>
+    <span>NordicHealth</span>
+  </div>
+
+  <nav class="main-nav">
+
+    <a href="index.html" id="nav-home"></a>
+
+    <div class="nav-dropdown">
+      <span id="nav-products"></span>
+
+      <div class="dropdown-menu">
+        <a href="index.html?cat=all" id="nav-all"></a>
+        <a href="index.html?cat=spray" id="nav-spray"></a>
+        <a href="index.html?cat=pills" id="nav-pills"></a>
+      </div>
+    </div>
+
+  </nav>
+
+  <div class="header-actions">
+
+    <!-- Idioma -->
+    <div class="lang-selector">
+      <button onclick="toggleLangMenu()" class="lang-btn">
+        🌐 <span id="current-lang">EN</span>
+      </button>
+
+      <div id="lang-menu" class="lang-menu">
+        <div class="lang-item" onclick="setLang('en')">
+          <span class="lang-code">GB</span>
+          <span>English</span>
+        </div>
+
+        <div class="lang-item" onclick="setLang('no')">
+          <span class="lang-code">NO</span>
+          <span>Norsk</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carrinho -->
+    <a href="#" onclick="openCart(); return false;" class="cart-btn">
+      🛒
+      <span id="cart-count" class="cart-badge">0</span>
+    </a>
+
+  </div>
+</header>
+
+<section class="hero">
+
+  <div class="hero-blur"></div>
+
+  <div class="hero-content">
+
+    <img src="assets/images/logo.png" class="hero-logo">
+
+    <h1 id="hero-title"></h1>
+    <p id="hero-subtitle"></p>
+
+    <button class="hero-btn"  id="hero-btn" onclick="location.href='#products-title'">
+      Explore products →
+    </button>
+
+  </div>
+
+</section>
+
+<h2 id="products-title"></h2>
+
+<div id="product-list" class="grid"></div>
+
+<!-- Overlay -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- Drawer -->
+<div id="cart-drawer">
+  <div class="cart-header">
+    <h3 id="cart-title"></h3>
+    <button onclick="closeCart()">✕</button>
+  </div>
+
+  <div id="cart-drawer-items"></div>
+
+  <div class="cart-footer">
+    <h3 id="drawer-total"></h3>
+    <button class="primary" id="checkout-btn" onclick="checkoutWhatsApp()">
+    </button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/checkout.js"></script>
+
+<script src="assets/js/i18n/en.js"></script>
+<script src="assets/js/i18n/no.js"></script>
+<script src="assets/js/i18n/i18n.js"></script>
+
+<script>
+document.getElementById("hero-title").innerText = t("heroTitle");
+document.getElementById("hero-subtitle").innerText = t("heroSubtitle");
+document.getElementById("products-title").innerText = t("products");
+document.getElementById("cart-title").innerText = t("cart");
+document.getElementById("checkout-btn").innerText = t("checkout");
+document.getElementById("nav-home").innerText = t("menuHome");
+document.getElementById("nav-products").innerText = t("menuProducts");
+document.getElementById("nav-all").innerText = t("menuProducts");
+document.getElementById("nav-spray").innerText = t("menuSpray");
+document.getElementById("nav-pills").innerText = t("menuPills");
+document.getElementById("hero-btn").innerText = t("heroButton");
+
+
+
+renderProducts();
+updateCartCount();
+</script>
+
+</body>
+</html>
